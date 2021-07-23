@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/home.css') }}">
+    <header>
+      <h2>Video Uploader</h2>
+    </header>
+    <section>
+        <nav>
+        <a href="http://127.0.0.1:5000/search">All Videos</a>
+        </nav>
+        <article>
+        <form action="/videos" method="post" enctype="multipart/form-data">
+        <h1><strong>Video upload</strong></h1>        
+        <div class="form-group">
+        <label for="title">Title <span>Use title case to get a better result</span></label>
+        <input type="text" name="title" id="title" class="form-controll"/>
+        </div>
+        <div class="form-group">
+        <label for="caption">Caption <span>This caption should be descriptiv</span></label>
+        <input type="text" name="dis" id="caption" class="form-controll"/>
+        </div> 
+        <div class="form-group file-area">
+        <label for="video">Video </label>
+        <input type="file" name="video" id="video" required="required" multiple="multiple" accept="video/mp4,video/x-m4v,video/*" />
+        <div class="file-dummy">
+        <div class="success">Great, your files are selected. Keep on.</div>
+        <div class="default">Please select some files</div>
+        </div>
+        </div>
+        <div class="form-group">
+        <button type="submit">Upload Video </button>
+        </div> 
+        <div>
+        <h2 style="color:rgb(255, 255, 255);font-weight: bold;font-size: large">{{x}}</h2>
+        </div>    
+        </form>
+        </article>
+    </section>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>Kids Platform</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/search.css') }}">
+    
+    <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+<meta name="theme-color" content="#7952b3">
+
+<style>
+    @media (prefers-reduced-motion:no-preference) {
+	:root {
+		scroll-behavior: smooth
+	}
+}
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+</style>
+  
+
+    
+  </head>
+  <body>
+    
+<header>
+  <div class="collapse bg-dark" id="navbarHeader">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-md-7 py-4">
+          <h4 class="text-white">About</h4>
+          <p class="text-muted">here you can upload your video </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="container">
+      <a href="#" class="navbar-brand d-flex align-items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="26" fill="currentColor" class="bi bi-play-btn-fill" viewBox="0 0 16 16">
+            <path d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/>
+          </svg>
+        <strong style="height: 30px;"> Video Player</strong>
+      </a>
+
+      <form class="example" method="POST" action="/" style="margin:auto;max-width:450px" >
+        <input type="text" placeholder="Search.." value="{{dflt}}" name="search_txt">
+        <button type="submit">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+              </svg>
+    
+        </button>
+    </form>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+   
+  <section class="py-5 text-center container">
+   
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light"></a>Upload Your Video</a></h1>  
+        <p>
+          <a href="http://127.0.0.1:5000/form" class="btn btn-primary my-2">Upload Video Here</a>
+          <!-- <a href="#" class="btn btn-secondary my-2">Secondary action</a> -->
+        </p>
+      </div>
+
+  </section> 
+<script>
+    function play(){
+        
+        let videoPlayer = document.getElementById('video');
+        
+        
+        videoPlayer.play()
+        videoPlayer.volume = 0.5;
+        videoPlayer.at
+    
+        videoPlayer.addEventListener('click', function () {
+            if (videoPlayer.paused == false) {
+                videoPlayer.pause();
+                videoPlayer.firstChild.nodeValue = 'Play';
+                
+            } else {
+                videoPlayer.play();
+                videoPlayer.firstChild.nodeValue = 'Pause';
+            }
+});
+}
+    
+ 
+
+</script>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+           
+            {% for row in rows %}   
+                <div class="col">
+                    <div id="{{row["user_id"]}}" class="card shadow-sm">
+                    <video id="video" style="max-height:210px;object-fit: fill;" controls="controls" onchange="play()" preload="metadata" poster="{{row['Image_URL']}}">    
+                        <source src="{{row["Video_URL"]}}" type="{{row["vid_type"]}}">   
+                            </video>
+                    </div>
+                    <div class="card-body">
+                        <h5>{{row["Title"]}}</h5>
+                        <p class="card-text">{{row["Caption"]}}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                </div>
+                                <small class="text-muted">{{row["vid_date"]}}</small>
+                            </div>
+                    </div>
+                </div>
+            {% endfor %}
+     
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="text-muted py-5">
+  <div class="container">
+    <p class="float-end mb-1">
+      <a href="#">Back to top</a>
+    </p>
+    <!-- <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+    <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="/docs/5.0/getting-started/introduction/">getting started guide</a>.</p>
+  -->
+</div>
+</footer>
+
+
+    <!-- <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+      
+  </body>
+</html>
+

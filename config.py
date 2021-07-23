@@ -1,0 +1,9 @@
+import os
+
+S3_BUCKET     = "mybkt30"
+S3_KEY    = "AKIA6HUK4R44SOQFHAWY"
+S3_SECRET   = "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"
+
+
+DEBUG     = True
+PORT  = 5000
